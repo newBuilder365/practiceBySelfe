@@ -1,0 +1,18 @@
+{
+  "name": "task2",
+  "version": "1.0.0",
+  "description": "- javascript 代码执行是同步执行的，但是内部的api是另外启动线程去执行的\r - 运行环境提供的api，有的是同步的例如console.log()，有点是异步的例如setTimeOut()",
+  "main": "sample-promise.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "html-webpack-plugin": "^3.2.0",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-server": "^3.9.0"
+  }
+}

@@ -1,5 +1,8 @@
-const promise = new Promise((resolve, reject)=>{
-    reject(100)
-}).then((res)=>{
-    console.log(res)
+const promise = new Promise((resolve, reject) => {
+    // resolve(100)
+    reject(new Error("promise is reject"))
 })
+
+promise.then((value) => {
+    console.log(value)
+}, (error)=>{console.log(error)})
