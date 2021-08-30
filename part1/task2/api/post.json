@@ -1,0 +1,10 @@
+[
+  {
+    "title": "post",
+    "method": "body"
+  },
+  {
+    "title": "get",
+    "method": "url"
+  }
+]

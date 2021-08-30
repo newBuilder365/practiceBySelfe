@@ -14,8 +14,10 @@ function ajax(url) {
     })
 }
 
-ajax('/api/user.json').then(function (res) {
-    console.log(res)
-}, function (error) {
-    console.log(error)
-})
+// ajax('/api/user.json').then(function (res) {
+//     console.log(res)
+// }, function (error) {
+//     console.log(error)
+// })
+
+export { ajax }
