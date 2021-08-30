@@ -5,10 +5,11 @@
 const MyPromise = require("./myPromise")
 
 const promise = new MyPromise(function (resolve, reject) {
-    resolve('成功')
-    // setTimeout(() => {
-    //     resolve("成功")
-    // }, 2000)
+    // throw new Error('11111')
+    // resolve('成功')
+    setTimeout(() => {
+        resolve("成功")
+    }, 2000)
     // setTimeout(() => {
     //     reject("失败")
     // }, 2000)
@@ -33,15 +34,30 @@ const promise = new MyPromise(function (resolve, reject) {
 //     console.log(error)
 // })
 
-function other(){
-    return new MyPromise((resolve, reject)=>{
-        resolve('other')
-    })
-}
+// function other() {
+//     return new MyPromise((resolve, reject) => {
+//         resolve('other')
+//     })
+// }
+
+// var p1 = promise.then((value) => {
+//     console.log(value)
+//     return p1
+// })
+
+
+// p1.then((value) => {
+//         console.log(value)
+//     },(error)=>{
+//         console.log(error.message)
+//     })
+
 
 promise.then((value)=>{
     console.log(value)
-    return other()
+    return 'aaaa'
+},(e)=>{
+    console.log(e.message)
 })
 .then((value)=>{
     console.log(value)
