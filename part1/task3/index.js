@@ -5,8 +5,10 @@
 const MyPromise = require("./myPromise")
 
 new MyPromise(function (resolve, reject) {
-    resolve("成功")
-    reject("失败")
+    setTimeout(() => {
+        resolve("成功")
+    }, 2000)
+    // reject("失败")
 })
     .then(function (value) {
         console.log(value)
