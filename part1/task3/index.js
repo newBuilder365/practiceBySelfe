@@ -4,14 +4,30 @@
 //resolve  resject是用来改变状态的  resolve  ===>fulfilled      reject ===>rejected
 const MyPromise = require("./myPromise")
 
-new MyPromise(function (resolve, reject) {
+const promise = new MyPromise(function (resolve, reject) {
+    // setTimeout(() => {
+    //     resolve("成功")
+    // }, 2000)
     setTimeout(() => {
-        resolve("成功")
+        reject("失败")
     }, 2000)
-    // reject("失败")
 })
-    .then(function (value) {
-        console.log(value)
-    }, function (error) {
-        console.log(error)
-    })
+
+
+promise.then(function (value) {
+    console.log(value)
+}, function (error) {
+    console.log(error)
+})
+
+promise.then(function (value) {
+    console.log(value)
+}, function (error) {
+    console.log(error)
+})
+
+promise.then(function (value) {
+    console.log(value)
+}, function (error) {
+    console.log(error)
+})
