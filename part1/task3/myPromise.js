@@ -45,18 +45,38 @@ class MyPromise {
 
     //这个类里面有一个方法then，then方法里面会返回两个回调，一个用于返回状态为成功时候的返回值，一个用于状态为失败的时候返回失败的原因
     then = (successCallback, filedCallback) => {
-        if (this.status === FULFILLED) {
-            successCallback(this.value)
-        } else if (this.status === REJECTED) {
-            filedCallback(this.reson)
-        } else {
-            //考虑异步的情况，此时执行then方法时，状态还是pengding
-            //此时可以将successCallback 以及 filedCallback两个方法存起来
-            this.successCallback.push(successCallback);
-            this.filedCallback.push(filedCallback);
-        }
+        //then方法可以作为链式调用执行，所以then方法的返回的也是一个promise函数
+        let promise2 = new MyPromise((resolve, reject) => {
+            if (this.status === FULFILLED) {
+                //将上一个成功回调的返回值，通过resolve传递给下一个then函数
+                let x = successCallback(this.value)
+                //此时x为常量的情况
+                // resolve(x)
+                //此时考虑了两种情况
+                resolvePromise(x, resolve, reject)
+            } else if (this.status === REJECTED) {
+                filedCallback(this.reson)
+            } else {
+                //考虑异步的情况，此时执行then方法时，状态还是pengding
+                //此时可以将successCallback 以及 filedCallback两个方法存起来
+                this.successCallback.push(successCallback);
+                this.filedCallback.push(filedCallback);
+            }
+        });
+        return promise2
     }
 
+}
+
+function resolvePromise(x, resolve, reject) {
+    if (x instanceof MyPromise) {
+        //上一个then函数的返回值是一个promise对象的情况
+        // x.then(value => resolve(value), reson => reject(reson))
+        x.then(resolve, reject)
+    }else{
+        //上一个then函数的返回值是一个常量的情况
+        resolve(x)
+    }
 }
 
 module.exports = MyPromise;

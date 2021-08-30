@@ -5,29 +5,44 @@
 const MyPromise = require("./myPromise")
 
 const promise = new MyPromise(function (resolve, reject) {
+    resolve('成功')
     // setTimeout(() => {
     //     resolve("成功")
     // }, 2000)
-    setTimeout(() => {
-        reject("失败")
-    }, 2000)
+    // setTimeout(() => {
+    //     reject("失败")
+    // }, 2000)
 })
 
 
-promise.then(function (value) {
-    console.log(value)
-}, function (error) {
-    console.log(error)
-})
+// promise.then(function (value) {
+//     console.log(value)
+// }, function (error) {
+//     console.log(error)
+// })
 
-promise.then(function (value) {
-    console.log(value)
-}, function (error) {
-    console.log(error)
-})
+// promise.then(function (value) {
+//     console.log(value)
+// }, function (error) {
+//     console.log(error)
+// })
 
-promise.then(function (value) {
+// promise.then(function (value) {
+//     console.log(value)
+// }, function (error) {
+//     console.log(error)
+// })
+
+function other(){
+    return new MyPromise((resolve, reject)=>{
+        resolve('other')
+    })
+}
+
+promise.then((value)=>{
     console.log(value)
-}, function (error) {
-    console.log(error)
+    return other()
+})
+.then((value)=>{
+    console.log(value)
 })
