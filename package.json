@@ -22,5 +22,8 @@
   "bugs": {
     "url": "https://github.com/newBuilder365/practiceBySelfe/issues"
   },
-  "homepage": "https://github.com/newBuilder365/practiceBySelfe#readme"
+  "homepage": "https://github.com/newBuilder365/practiceBySelfe#readme",
+  "dependencies": {
+    "nodemon": "^2.0.12"
+  }
 }
