@@ -26,3 +26,31 @@
 
 #### TypeScript包含 JavaScript  类型系统  ES6+
 
+#### typescript选择编译成es5以及下时，使用es6的Symbol会报错，可以在tsConfig中的lib中添加ES2915以及“DOM”解决
+
+#### typescript显示中文错误消息的方法
+
+```js
+tsc --locale zh-CN
+```
+
+##### 类型断言
+
+告诉编辑器当前确定会是什么类型
+
+```tsx
+const num1 = res as number
+const num2 = <number>res   //JSX 下不能使用
+```
+
+##### 抽象类
+
+```tsx
+abstract class Animal {}
+//前面加关键字 abstract  只能被继承，不能new
+```
+
+##### 泛型
+
+将定义时不能确定的类型作为参数传进去
+
