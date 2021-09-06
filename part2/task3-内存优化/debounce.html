@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>防抖函数</title>
+  </head>
+  <body>
+    <button id="btn">点击</button>
+
+    <script>
+      var btn = document.getElementById("btn");
+      //   btn.onclick = function () {
+      //     console.log("点击了");
+      //   };
+
+      /**
+       * handle  执行函数
+       * wait  点击完后，等待多长时间执行
+       * immediate  true:点击后执行第一个，false，执行最后一次的点击
+       */
+      function myDebounce(handle, wait, immediate) {
+        //对传入的参数做判断
+        if (typeof handle !== "function")
+          throw new Error("handle must be an function");
+        if (wait === undefined) wait = 300;
+        //兼容第二个参数传布尔类型
+        if (typeof wait === "boolean") {
+          immediate = wait;
+          wait = 300;
+        }
+        if (typeof immediate !== "boolean") immediate = false; //默认执行最后一次
+        let timer = null;
+        return function Poxy(...args) {
+          // var self = this;
+          let init = immediate && !timer; //加上!timer条件，这样下面的定时器只会执行一次
+          let flag = true;
+          //执行完成后过一段时间再执行wait
+          clearTimeout(timer);
+          timer = setTimeout(() => {
+            //使用!immediate，不会执行定时器里面的代码
+            timer = null;
+            !immediate ? handle.call(this, ...args) : null;
+          }, wait);
+          init ? handle.call(this, ...args) : null;
+        };
+      }
+
+      function btnClick(ev) {
+        console.log(this, ev);
+        console.log("点击了");
+      }
+
+      btn.onclick = myDebounce(btnClick, 300, true);
+      //   btn.onclick = btnClick;
+    </script>
+  </body>
+</html>
